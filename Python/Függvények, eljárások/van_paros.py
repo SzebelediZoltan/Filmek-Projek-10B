@@ -1,6 +1,9 @@
+def T(a):
+    return a%2==0
+       
 def vanParos(x):
     i=0
-    while i < len(x) and not(x[i]%2==0):
+    while i < len(x) and not(T(x[i])):
         i+=1
     if i < len(x):
         return True

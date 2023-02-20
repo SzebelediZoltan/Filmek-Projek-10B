@@ -1,0 +1,21 @@
+#Gyarto + Mennyiseg
+Pickwick
+100
+Lipton
+200
+Teekanne
+200
+Pickwick
+200
+Greenfield
+400
+Nelson
+100
+Lipton
+100
+Pickwick
+300
+Pickwick
+100
+Nelson
+100
