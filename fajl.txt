@@ -1,0 +1,6 @@
+------------------------- 
+Film neve: nev
+Film hoszusaga percben: 90
+Film ertekelese: 10.0
+Csaladbarat: Igen 
+------------------------- 

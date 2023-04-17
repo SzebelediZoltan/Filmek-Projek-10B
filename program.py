@@ -70,15 +70,16 @@ def elso_csaladbarat(nevek, csaladbaratok):
         print("Nincs családbarát film az adatbázisunkba.")
 
 def menu(nevek, hosszak, ertekelesek, csaladbaratok):
-    menu_jel()
-    print("1-Legjobb film (A legjobb besorolást kapott film)")
-    print("2-Legrosszabb film (A legrosszabb besorolást kapott film)")
-    print("3-Leghoszabb film (A leghosszabb film)")
-    print("4-Legjobb film (A legrövidebb film)")
+    menu_jel("m")
+    print("1-Legjobb film")
+    print("2-Legrosszabb film")
+    print("3-Leghoszabb film")
+    print("4-Legrövidebb film")
     print("5-Megadott hosszú filmek (Egy megadott intervallumban kilistázza neked a filmeket)")
     print("6-Családbarát film (Első családbarát film)")
-    print("6-Adatokkal kapcsolatos menu")
-    print(-------------------------)
+    print("7-DOBJ EGY FILMET")
+    print("8-Adatokkal kapcsolatos menu")
+    menu_jel("s")
     valasztas = int(input("Választás: "))
     if valasztas == 1:
         legjobb_film(ertekelesek)
@@ -93,17 +94,60 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
     elif valasztas == 6:
         elso_csaladbarat(nevek, csaladbaratok)
     elif valasztas == 7:
+        dobj_1_filmet(nevek, hosszak, ertekelesek, csaladbaratok)
+    elif valasztas == 8:
         adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
+    else:
+        fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
 
 def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
-    menu_jel()
-    print("1-Összes film darabszám")
-    print("2-Össze percnyi film (nap/óra/perc)")
-    print("3-Összes családbarát film")
-    print("4-Összes NEM családbarát film")
+    menu_jel("a")
+    print("1-Összes film")
+    print("2-Összes film darabszám")
+    print("3-Összes percnyi film (nap/óra/perc)")
+    print("4-Összes családbarát film")
+    print("5-Összes NEM családbarát film")
+    print("6-Összes 10/10-es film")
+    print("7-Összes 10/1-es film")
+    print("-------------------------")
+    valasztas = int(input("Választás: "))
     
-def menu_jel():
-    print("----------MENU----------")
+def menu_jel(v="m"):
+    if v == "m":
+        print("----------MENU----------")
+    elif v == "a":
+        print("-------ADATOK-MENU-------")
+    elif v == "s":
+        print("-------------------------")
+        
+def fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok, fajl="fajl.txt"):
+    fw = open(fajl, "w")
+    fw.write("------------------------- \n")
+    for i in range(len(nevek)):
+        fw.write("Film neve: " + nevek[i] + "\n")
+        fw.write("Film hoszusaga percben: " + str(hosszak[i]) + "\n")
+        fw.write("Film ertekelese: " + str(ertekelesek[i]) + "\n")
+        if csaladbaratok[i] == 1:
+            fw.write("Csaladbarat: Igen \n")
+        else:
+            fw.write("Csaladbarat: Nem \n")
+            
+        fw.write("------------------------- \n")
+        
+    fw.close()
+    
+def tiztiz_filmek(nevek, ertekelesek):
+    kivalogatott_nevek = []
+    for i in range(len(ertekelesek)):
+        if ertekelesek[i] == 10:
+            kivalogatott_nevek.append(nevek[i])
+    
+    if len(kivalogatott_nevek) == 0:
+        print("Nincs 10-es értékelést elért film az adatbázisunkban.")
+    else:
+        for i in range(len(kivalogatott_nevek)):
+            print(kivalogatott_nevek[i])
+    
 
 def main():
     nevek=[]
