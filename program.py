@@ -191,10 +191,10 @@ def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
         menu_jel("s")
         print(f"Összes film darabszam: {ossz_filmdb}")
         valasztas = input("Szeretnéd Exportálni külön fájlba az adatokat? (I vagy N): ")
-        if valasztas.upper() == "I":
+        if valasztas == "I":
             valasztas = input("Szeretnél saját nevet a fájlnak? (I vagy N): ")
-            if valasztas.upper() == "I":
-                fajl_nev = input("Mi legyen a neve? (A végére tedd ki a .txt-t)")
+            if valasztas == "I":
+                fajl_nev = input("Mi legyen a neve? (A végére tedd ki a .txt-t): ")
                 fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok, fajl_nev)
             else:
                 fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
