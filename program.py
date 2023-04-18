@@ -139,7 +139,7 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
         print("4-Legrövidebb film")
         print("5-Megadott hosszú filmek (Egy megadott intervallumban kilistázza neked a filmeket)")
         print("6-Családbarát film (Első családbarát film)")
-        print("7-DOBJ EGY FILMET")
+        print("7-LEPJ MEG")
         print("8-Adatokkal kapcsolatos menu")
         print("9-KILÉPÉS")
         menu_jel("s")
@@ -158,7 +158,7 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
         elif valasztas == "6":
             print(csb_film)
         elif valasztas == "7":
-            d1f()
+            lm(nevek, hosszak, ertekelesek, csaladbaratok)
         elif valasztas == "8":
             adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
         elif valasztas == "9":
@@ -167,6 +167,35 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
             print("Valamit meg is kéne adni")
         else:
             print("Adj meg lehetséges választ")
+            
+def lm(nevek, hosszak, ertekelesek, csaladbaratok):
+    menu_jel("lm")
+    valasztas = input("Több filmel is meglepjelek? (I vagy N): ")
+    if valasztas == 'I':
+        db = int(input("Mennyivel? (MAX: 500): "))
+    
+    menu_jel("lm")
+    print("1-Lepj meg családbarát film(ekk)el")
+    print("2-Lepj meg rövid film(ekk)el")
+    print("3-Lepj meg hosszú film(ekk)el")
+    print("4-Lepj meg jó film(ekk)el")
+    print("5-Nekem aztán 8")
+    valasztas = input("Választás: ")
+    if valasztas == "1":
+        lmcsf()
+    elif valasztas == "2":
+        lmrf()
+    elif valasztas == "3":
+        lmhf()
+    elif valasztas == "4":
+        lmjf()
+    elif valasztas == "5":
+        na8()
+    elif valasztas == "":
+        print("Valamit meg is kéne adni")
+    else:
+        print("Adj meg lehetséges választ")
+        
 
 def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
     ossz_film = osszes_filmneve(nevek)
@@ -221,6 +250,8 @@ def menu_jel(v="m"):
         print("-------ADATOK-MENU-------")
     elif v == "s":
         print("-------------------------")
+    elif v == "lm":
+        print("-----------LM------------")
         
 def fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok, fajl="fajl.txt"):
     fw = open(fajl, "w")
