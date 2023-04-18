@@ -90,11 +90,10 @@ def tizegy_filmek(nevek, ertekelesek):
     if len(kivalogatott_nevek) == 0:
         return("Nincs 1-es értékelést elért film az adatbázisunkban.")
     else:
-        return(kivalogatott_nevek[i])
+        return(kivalogatott_nevek)
 
 def osszes_filmneve(nevek):
-    for i in range(len(nevek)):
-        return(nevek[i])
+    return nevek
 
 def osszes_csaladbarat(nevek, csaladbaratok):
     csb=[]
@@ -191,6 +190,9 @@ def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
         kiir(ossz_film)
         menu_jel("s")
         print(f"Összes film darabszam: {ossz_filmdb}")
+        valasztas = input("Szeretnéd Exportálni külön fájlba az adatokat? (I vagy N):")
+        if valasztas == "I":
+            fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
     elif valasztas == "2":
         print(f"{ossz_ido[0]} nap, {ossz_ido[1]} óra, {ossz_ido[2]} perc")
     elif valasztas == "3":
@@ -240,7 +242,7 @@ def tiztiz_filmek(nevek, ertekelesek):
     if len(kivalogatott_nevek) == 0:
         return "Nincs 10-es értékelést elért film az adatbázisunkban."
     else:
-        return kivalogatott_nevek[i]
+        return kivalogatott_nevek
     
 
 def main():
