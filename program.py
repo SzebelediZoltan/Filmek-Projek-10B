@@ -16,7 +16,7 @@ def megadott_ido(nevek, hosszak):
     for i in range(len(nevek)):
         if hosszak[i]>=mine and hosszak[i]<=maxe:
              megfelelo_nevek.append(nevek[i])
-    print(megfelelo_nevek)
+    return megfelelo_nevek
 
 def legjobb_film(ertekelesek):
     maxe=ertekelesek[0]
@@ -25,6 +25,7 @@ def legjobb_film(ertekelesek):
         if ertekelesek[i]> maxe:
             maxe=ertekelesek[i]
             maxi=i
+    return maxi
 
 def legrosszabb_film(ertekelesek):
     mine=ertekelesek[0]
@@ -33,6 +34,7 @@ def legrosszabb_film(ertekelesek):
         if ertekelesek[i]< mine:
             mine=ertekelesek[i]
             mini=i
+    return mini
 
 def leghosszabb_film(hosszak):
     maxe=hosszak[0]
@@ -41,6 +43,7 @@ def leghosszabb_film(hosszak):
         if hosszak[i]> maxe:
             maxe=hosszak[i]
             maxi=i
+    return maxi
 
 def legrövidebb_film(hosszak):
     mine=hosszak[0]
@@ -49,25 +52,70 @@ def legrövidebb_film(hosszak):
         if hosszak[i]< mine:
             mine=hosszak[i]
             mini=i
+    return mini
 
 def osszes_film(nevek):
     db=0
     for i in range(len(nevek)):
         db+=1
+    return db
 
 def osszes_perc(hosszak):
     perc=0
     for i in range(len(hosszak)):
         perc=hosszak[i]
 
+    nap = perc//1440
+    perc = perc%1440
+    óra = perc//60
+    perc  = perc%60
+    return nap, óra, perc
+
 def elso_csaladbarat(nevek, csaladbaratok):
     i=0
     while i < len(csaladbaratok) and not (csaladbaratok[i]==1 ):
         i+=1
     if i< len(csaladbaratok):
-        print(nevek[i])
+        return (nevek[i])
     else:
-        print("Nincs családbarát film az adatbázisunkba.")
+        return("Nincs családbarát film az adatbázisunkba.")
+
+def tizegy_filmek(nevek, ertekelesek):
+    kivalogatott_nevek = []
+    for i in range(len(ertekelesek)):
+        if ertekelesek[i] == 1:
+            kivalogatott_nevek.append(nevek[i])
+    
+    if len(kivalogatott_nevek) == 0:
+        return("Nincs 1-es értékelést elért film az adatbázisunkban.")
+    else:
+        return(kivalogatott_nevek[i])
+
+def osszes_filmneve(nevek):
+    for i in range(len(nevek)):
+        return(nevek[i])
+
+def osszes_csaladbarat(nevek, csaladbaratok):
+    csb=[]
+    for i in range(len(csaladbaratok)):
+        if csaladbaratok==1:
+            csb.append(nevek[i])
+    return csb
+    
+def osszes_nem_csaladbarat(nevek, csaladbaratok):
+    csb=[]
+    for i in range(len(csaladbaratok)):
+        if csaladbaratok==0:
+            csb.append(nevek[i])
+    return csb
+
+def kiir(lista):
+    if type(list)==str:
+        print(lista)
+    else:
+        for i in range(len(lista)):
+            print(lista[i])
+        
 
 def menu(nevek, hosszak, ertekelesek, csaladbaratok):
     menu_jel("m")
