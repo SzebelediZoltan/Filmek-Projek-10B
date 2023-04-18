@@ -70,47 +70,75 @@ def elso_csaladbarat(nevek, csaladbaratok):
         print("Nincs családbarát film az adatbázisunkba.")
 
 def menu(nevek, hosszak, ertekelesek, csaladbaratok):
-    menu_jel("m")
-    print("1-Legjobb film")
-    print("2-Legrosszabb film")
-    print("3-Leghoszabb film")
-    print("4-Legrövidebb film")
-    print("5-Megadott hosszú filmek (Egy megadott intervallumban kilistázza neked a filmeket)")
-    print("6-Családbarát film (Első családbarát film)")
-    print("7-DOBJ EGY FILMET")
-    print("8-Adatokkal kapcsolatos menu")
-    menu_jel("s")
-    valasztas = int(input("Választás: "))
-    if valasztas == 1:
-        legjobb_film(ertekelesek)
-    elif valasztas == 2:
-        legrosszabb_film(ertekelesek)
-    elif valasztas == 3:
-        leghosszabb_film(hosszak)
-    elif valasztas == 4:
-        legrövidebb_film(hosszak)
-    elif valasztas == 5:
-        megadott_ido(nevek, hosszak)
-    elif valasztas == 6:
-        elso_csaladbarat(nevek, csaladbaratok)
-    elif valasztas == 7:
-        dobj_1_filmet(nevek, hosszak, ertekelesek, csaladbaratok)
-    elif valasztas == 8:
-        adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
-    else:
-        fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
+    while True:
+        ljobb_film = legjobb_film(nevek, ertekelesek)
+        lrosszabb_film = legrosszabb_film(nevek, ertekelesek)
+        lhosszabb_film = leghosszabb_film(nevek, hosszak)
+        lrovidebb_film = legrövidebb_film(nevek, hosszak)
+        inter_filmek = megadott_ido(nevek, hosszak)
+        csb_film = elso_csaladbarat(nevek, csaladbaratok)
+        menu_jel("m")
+        print("1-Legjobb film")
+        print("2-Legrosszabb film")
+        print("3-Leghoszabb film")
+        print("4-Legrövidebb film")
+        print("5-Megadott hosszú filmek (Egy megadott intervallumban kilistázza neked a filmeket)")
+        print("6-Családbarát film (Első családbarát film)")
+        print("7-DOBJ EGY FILMET")
+        print("8-Adatokkal kapcsolatos menu")
+        menu_jel("s")
+        valasztas = int(input("Választás: "))
+        menu_jel("s")
+        if valasztas == 1:
+            print(ljobb_film)
+        elif valasztas == 2:
+            print(lrosszabb_film)
+        elif valasztas == 3:
+            print(lhosszabb_film)
+        elif valasztas == 4:
+            print(lrovidebb_film)
+        elif valasztas == 5:
+            kiir(inter_filmek)
+        elif valasztas == 6:
+            print(csb_film)
+        elif valasztas == 7:
+            d1f()
+        elif valasztas == 8:
+            adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
 
 def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
+    ossz_film = osszes_filmneve(nevek)
+    ossz_filmdb = osszes_film(nevek)
+    ossz_perc = osszes_perc(hosszak)
+    ossz_csb = osszes_csaladbarat(nevek, csaladbaratok)
+    ossz_n_csb = oszes_nem_csaladbarat(nevek, csaladbaratok)
+    ossz_10 = tiztiz_filmek(nevek, ertekelesek)
+    ossz_1 = tizegy_filmek(nevek, ertekelesek)
     menu_jel("a")
     print("1-Összes film")
-    print("2-Összes film darabszám")
-    print("3-Összes percnyi film (nap/óra/perc)")
-    print("4-Összes családbarát film")
-    print("5-Összes NEM családbarát film")
-    print("6-Összes 10/10-es film")
-    print("7-Összes 10/1-es film")
-    print("-------------------------")
+    print("2-Összes percnyi film (nap/óra/perc)")
+    print("3-Összes családbarát film")
+    print("4-Összes NEM családbarát film")
+    print("5-Összes 10/10-es film")
+    print("6-Összes 10/1-es film")
+    menu_jel("s")
     valasztas = int(input("Választás: "))
+    menu_jel("s")
+    if valasztas == 1:
+        kiir(ossz_film)
+        menu_jel("s")
+        print(f"Összes film darabszam: {ossz_filmdb}")
+    elif valasztas == 2:
+        print(ossz_perc)
+    elif valasztas == 3:
+        kiir(ossz_csb)
+    elif valasztas == 4:
+        kiir(ossz_n_csb)
+    elif valasztas == 5:
+        kiir(ossz_10)
+    elif valasztas == 6:
+        kiir(ossz_1)
+
     
 def menu_jel(v="m"):
     if v == "m":
@@ -143,10 +171,9 @@ def tiztiz_filmek(nevek, ertekelesek):
             kivalogatott_nevek.append(nevek[i])
     
     if len(kivalogatott_nevek) == 0:
-        print("Nincs 10-es értékelést elért film az adatbázisunkban.")
+        return "Nincs 10-es értékelést elért film az adatbázisunkban."
     else:
-        for i in range(len(kivalogatott_nevek)):
-            print(kivalogatott_nevek[i])
+        return kivalogatott_nevek[i]
     
 
 def main():
