@@ -16,6 +16,7 @@ def megadott_ido(nevek, hosszak):
     for i in range(len(nevek)):
         if hosszak[i]>=mine and hosszak[i]<=maxe:
              megfelelo_nevek.append(nevek[i])
+    menu_jel("s")
     return megfelelo_nevek
 
 def legjobb_film(ertekelesek):
@@ -98,19 +99,27 @@ def osszes_filmneve(nevek):
 def osszes_csaladbarat(nevek, csaladbaratok):
     csb=[]
     for i in range(len(csaladbaratok)):
-        if csaladbaratok==1:
+        if csaladbaratok[i]==1:
             csb.append(nevek[i])
-    return csb
+            
+    if len(csb) == 0:
+        return("Nincs családbarát film az adatbázisunkban.")
+    else:
+        return csb
     
 def osszes_nem_csaladbarat(nevek, csaladbaratok):
     csb=[]
     for i in range(len(csaladbaratok)):
-        if csaladbaratok==0:
+        if csaladbaratok[i]==0:
             csb.append(nevek[i])
-    return csb
+    
+    if len(csb) == 0:
+        return("Nincs NEM családbarát film az adatbázisunkban.")
+    else:
+        return csb
 
 def kiir(lista):
-    if type(list)==str:
+    if type(lista)==str:
         print(lista)
     else:
         for i in range(len(lista)):
@@ -119,11 +128,10 @@ def kiir(lista):
 
 def menu(nevek, hosszak, ertekelesek, csaladbaratok):
     while True:
-        ljobb_film = legjobb_film(nevek, ertekelesek)
-        lrosszabb_film = legrosszabb_film(nevek, ertekelesek)
-        lhosszabb_film = leghosszabb_film(nevek, hosszak)
-        lrovidebb_film = legrövidebb_film(nevek, hosszak)
-        inter_filmek = megadott_ido(nevek, hosszak)
+        ljobb_film_i = legjobb_film(ertekelesek)
+        lrosszabb_film_i = legrosszabb_film(ertekelesek)
+        lhosszabb_film_i = leghosszabb_film(hosszak)
+        lrovidebb_film_i = legrövidebb_film(hosszak)
         csb_film = elso_csaladbarat(nevek, csaladbaratok)
         menu_jel("m")
         print("1-Legjobb film")
@@ -134,32 +142,39 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
         print("6-Családbarát film (Első családbarát film)")
         print("7-DOBJ EGY FILMET")
         print("8-Adatokkal kapcsolatos menu")
+        print("9-KILÉPÉS")
         menu_jel("s")
-        valasztas = int(input("Választás: "))
+        valasztas = input("Választás: ")
         menu_jel("s")
-        if valasztas == 1:
-            print(ljobb_film)
-        elif valasztas == 2:
-            print(lrosszabb_film)
-        elif valasztas == 3:
-            print(lhosszabb_film)
-        elif valasztas == 4:
-            print(lrovidebb_film)
-        elif valasztas == 5:
-            kiir(inter_filmek)
-        elif valasztas == 6:
+        if valasztas == "1":
+            print(nevek[ljobb_film_i])
+        elif valasztas == "2":
+            print(nevek[lrosszabb_film_i])
+        elif valasztas == "3":
+            print(nevek[lhosszabb_film_i])
+        elif valasztas == "4":
+            print(nevek[lrovidebb_film_i])
+        elif valasztas == "5":
+            kiir(megadott_ido(nevek, hosszak))
+        elif valasztas == "6":
             print(csb_film)
-        elif valasztas == 7:
+        elif valasztas == "7":
             d1f()
-        elif valasztas == 8:
+        elif valasztas == "8":
             adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
+        elif valasztas == "9":
+            quit()
+        elif valasztas == "":
+            print("Valamit meg is kéne adni")
+        else:
+            print("Adj meg lehetséges választ")
 
 def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
     ossz_film = osszes_filmneve(nevek)
     ossz_filmdb = osszes_film(nevek)
-    ossz_perc = osszes_perc(hosszak)
+    ossz_ido = osszes_perc(hosszak)
     ossz_csb = osszes_csaladbarat(nevek, csaladbaratok)
-    ossz_n_csb = oszes_nem_csaladbarat(nevek, csaladbaratok)
+    ossz_n_csb = osszes_nem_csaladbarat(nevek, csaladbaratok)
     ossz_10 = tiztiz_filmek(nevek, ertekelesek)
     ossz_1 = tizegy_filmek(nevek, ertekelesek)
     menu_jel("a")
@@ -170,22 +185,26 @@ def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
     print("5-Összes 10/10-es film")
     print("6-Összes 10/1-es film")
     menu_jel("s")
-    valasztas = int(input("Választás: "))
+    valasztas = input("Választás: ")
     menu_jel("s")
-    if valasztas == 1:
+    if valasztas == "1":
         kiir(ossz_film)
         menu_jel("s")
         print(f"Összes film darabszam: {ossz_filmdb}")
-    elif valasztas == 2:
-        print(ossz_perc)
-    elif valasztas == 3:
+    elif valasztas == "2":
+        print(f"{ossz_ido[0]} nap, {ossz_ido[1]} óra, {ossz_ido[2]} perc")
+    elif valasztas == "3":
         kiir(ossz_csb)
-    elif valasztas == 4:
+    elif valasztas == "4":
         kiir(ossz_n_csb)
-    elif valasztas == 5:
+    elif valasztas == "5":
         kiir(ossz_10)
-    elif valasztas == 6:
+    elif valasztas == "6":
         kiir(ossz_1)
+    elif valasztas == "":
+        print("Valamit meg is kéne adni")
+    else:
+        print("Adj meg lehetséges választ")
 
     
 def menu_jel(v="m"):
