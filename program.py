@@ -190,9 +190,14 @@ def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
         kiir(ossz_film)
         menu_jel("s")
         print(f"Összes film darabszam: {ossz_filmdb}")
-        valasztas = input("Szeretnéd Exportálni külön fájlba az adatokat? (I vagy N):")
-        if valasztas == "I":
-            fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
+        valasztas = input("Szeretnéd Exportálni külön fájlba az adatokat? (I vagy N): ")
+        if valasztas.upper() == "I":
+            valasztas = input("Szeretnél saját nevet a fájlnak? (I vagy N): ")
+            if valasztas.upper() == "I":
+                fajl_nev = input("Mi legyen a neve? (A végére tedd ki a .txt-t)")
+                fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok, fajl_nev)
+            else:
+                fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok)
     elif valasztas == "2":
         print(f"{ossz_ido[0]} nap, {ossz_ido[1]} óra, {ossz_ido[2]} perc")
     elif valasztas == "3":
