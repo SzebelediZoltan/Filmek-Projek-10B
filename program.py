@@ -141,7 +141,8 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
         print("6-Családbarát film (Első családbarát film)")
         print("7-LEPJ MEG")
         print("8-Adatokkal kapcsolatos menu")
-        print("9-KILÉPÉS")
+        print("9-TESZT Menu")
+        print("10-KILÉPÉS")
         menu_jel("s")
         valasztas = input("Választás: ")
         menu_jel("s")
@@ -162,12 +163,40 @@ def menu(nevek, hosszak, ertekelesek, csaladbaratok):
         elif valasztas == "8":
             adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok)
         elif valasztas == "9":
+            teszt_menu(nevek, hosszak, ertekelesek, csaladbaratok)
+        elif valasztas == "10":
             quit()
         elif valasztas == "":
             print("Valamit meg is kéne adni")
         else:
             print("Adj meg lehetséges választ")
             
+            
+def teszt_menu(nevek, hosszak, ertekelesek, csaladbaratok):
+    teszt = True
+    while teszt:
+        menu_jel("t")
+        print("Melyik teszt fájlt szeretnéd használni?")
+        print("1-be1.txt")            
+        print("2-be2.txt")            
+        print("3-be3.txt")
+        print("4-KILÉPÉS")
+        menu_jel("s")
+        valasztas = input("Választás: ")
+        menu_jel("s")
+        if valasztas == "1":
+            teszt_1()       
+        elif valasztas == "2":
+            teszt_2()       
+        elif valasztas == "3":
+            teszt_3()
+        elif valasztas == "4":
+            teszt = False
+        elif valasztas == "":
+            print("Valamit meg is kéne adni")
+        else:
+            print("Adj meg lehetséges választ")       
+
 def lm(nevek, hosszak, ertekelesek, csaladbaratok):
     menu_jel("lm")
     valasztas = input("Több filmel is meglepjelek? (I vagy N): ")
@@ -252,6 +281,8 @@ def menu_jel(v="m"):
         print("-------------------------")
     elif v == "lm":
         print("-----------LM------------")
+    elif v == "t":
+        print("----------TESZT----------")
         
 def fancy_lista(nevek, hosszak, ertekelesek, csaladbaratok, fajl="fajl.txt"):
     fw = open(fajl, "w")
