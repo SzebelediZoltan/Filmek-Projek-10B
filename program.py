@@ -197,6 +197,28 @@ def teszt_menu(nevek, hosszak, ertekelesek, csaladbaratok):
         else:
             print("Adj meg lehetséges választ")       
 
+def teszt_1():
+    menu_jel("t")
+    fr = open("be1.txt", "r")
+    sor= fr.readline().strip().split()
+    while sor != [""]:
+        sor=fr.readline().strip().split()
+        
+def teszt_2():
+    menu_jel("t")
+    fr = open("be2.txt", "r")
+    sor= fr.readline().strip().split()
+    while sor != [""]:
+        sor=fr.readline().strip().split()
+        
+def teszt_3():
+    menu_jel("t")
+    fr = open("be3.txt", "r")
+    sor= fr.readline().strip().split()
+    while sor != [""]:
+        sor=fr.readline().strip().split()
+    
+
 def lm(nevek, hosszak, ertekelesek, csaladbaratok):
     menu_jel("lm")
     valasztas = input("Több filmel is meglepjelek? (I vagy N): ")
