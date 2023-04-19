@@ -1,3 +1,5 @@
+from random import randint
+
 def beolvas(nevek, hosszak, ertekelesek, csaladbaratok):
     fr=open("filmek.txt", "r")
     sor=fr.readline().strip().split()
@@ -55,11 +57,15 @@ def legrövidebb_film(hosszak):
             mini=i
     return mini
 
-def osszes_film(nevek):
-    db=0
+def osszes_film(nevek, csaladbaratok):
+    cs_db=0
+    ncs_db=0
     for i in range(len(nevek)):
-        db+=1
-    return db
+        if csaladbaratok[i] == 1:
+            cs_db += 1
+        else:
+            ncs_db += 1
+    return cs_db, ncs_db
 
 def osszes_perc(hosszak):
     perc=0
@@ -221,38 +227,74 @@ def teszt_3():
 
 def lm(nevek, hosszak, ertekelesek, csaladbaratok):
     menu_jel("lm")
-    valasztas = input("Több filmel is meglepjelek? (I vagy N): ")
-    if valasztas == 'I':
-        db = int(input("Mennyivel? (MAX: 500): "))
+        
+    lm1 = lmcsf(nevek, csaladbaratok)
+    lm2 = lmrf(nevek, hosszak)
+    lm3 = lmhf(nevek, hosszak)
+    lm4 = lmjf(nevek, ertekelesek)
+    lm5_n, lm5_h, lm5_e = na8(nevek, hosszak, ertekelesek, randint(0, len(nevek)-1))
     
-    menu_jel("lm")
-    print("1-Lepj meg családbarát film(ekk)el")
-    print("2-Lepj meg rövid film(ekk)el")
-    print("3-Lepj meg hosszú film(ekk)el")
-    print("4-Lepj meg jó film(ekk)el")
+    print("1-Lepj meg családbarát filmel")
+    print("2-Lepj meg rövid filmel")
+    print("3-Lepj meg hosszú filmel")
+    print("4-Lepj meg jó filmel")
     print("5-Nekem aztán 8")
     menu_jel("s")
     valasztas = input("Választás: ")
     menu_jel("s")
     if valasztas == "1":
-        lmcsf()
+        print(lm1)
     elif valasztas == "2":
-        lmrf()
+        print(lm2)
     elif valasztas == "3":
-        lmhf()
+        print(lm3)
     elif valasztas == "4":
-        lmjf()
+        print(lm4)
     elif valasztas == "5":
-        na8()
+        print(f"Nev: {lm5_n} \nHossza: {lm5_h}perc \nÉrtékelése: {lm5_e} Pont")
     elif valasztas == "":
         print("Valamit meg is kéne adni")
     else:
         print("Adj meg lehetséges választ")
         
+def lmcsf(nevek, csaladbaratok):
+    csb = []
+    for i in range(len(csaladbaratok)):
+        if csaladbaratok[i] == 1:
+            csb.append(nevek[i])
+            
+    return csb[randint(0, len(csb)-1)]
+
+def lmrf(nevek, hosszak):
+    r = []
+    for i in range(len(hosszak)):
+        if hosszak[i] <= 120:
+            r.append(nevek[i])
+            
+    return r[randint(0, len(r)-1)]
+
+def lmhf(nevek, hosszak):
+    h = []
+    for i in range(len(hosszak)):
+        if hosszak[i] >= 150 :
+            h.append(nevek[i])
+            
+    return h[randint(0, len(h)-1)]
+
+def lmjf(nevek, ertekelesek):
+    j = []
+    for i in range(len(ertekelesek)):
+        if ertekelesek[i] >= 8:
+            j.append(nevek[i])
+            
+    return j[randint(0, len(j)-1)]
+
+def na8(nevek, hosszak, ertekelesek, szam): 
+    return nevek[szam], hosszak[szam], ertekelesek[szam]
 
 def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
     ossz_film = osszes_filmneve(nevek)
-    ossz_filmdb = osszes_film(nevek)
+    ossz_film_cs_db, ossz_film_ncs_db = osszes_film(nevek, csaladbaratok)
     ossz_ido = osszes_perc(hosszak)
     ossz_csb = osszes_csaladbarat(nevek, csaladbaratok)
     ossz_n_csb = osszes_nem_csaladbarat(nevek, csaladbaratok)
@@ -271,7 +313,8 @@ def adatok_menu(nevek, hosszak, ertekelesek, csaladbaratok):
     if valasztas == "1":
         kiir(ossz_film)
         menu_jel("s")
-        print(f"Összes film darabszam: {ossz_filmdb}")
+        print(f"Összes családbarát film darabszam: {ossz_film_cs_db}")
+        print(f"Összes NEM családbarát film darabszam: {ossz_film_ncs_db}")
         valasztas = input("Szeretnéd Exportálni külön fájlba az adatokat? (I vagy N): ")
         if valasztas == "I":
             valasztas = input("Szeretnél saját nevet a fájlnak? (I vagy N): ")
