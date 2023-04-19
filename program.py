@@ -64,7 +64,7 @@ def osszes_film(nevek):
 def osszes_perc(hosszak):
     perc=0
     for i in range(len(hosszak)):
-        perc=hosszak[i]
+        perc+=hosszak[i]
 
     nap = perc//1440
     perc = perc%1440
