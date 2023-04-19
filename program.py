@@ -231,7 +231,9 @@ def lm(nevek, hosszak, ertekelesek, csaladbaratok):
     print("3-Lepj meg hosszú film(ekk)el")
     print("4-Lepj meg jó film(ekk)el")
     print("5-Nekem aztán 8")
+    menu_jel("s")
     valasztas = input("Választás: ")
+    menu_jel("s")
     if valasztas == "1":
         lmcsf()
     elif valasztas == "2":
