@@ -1,0 +1,4 @@
+Nemo-nyomaban 100 9.0 1
+Shrek 90 8.5 1
+Zootropolis 108 9.0 1
+Toy-Story 100 8.0 1
