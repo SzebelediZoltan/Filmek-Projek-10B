@@ -186,45 +186,41 @@ def teszt_menu(nevek, hosszak, ertekelesek, csaladbaratok):
         print("1-be1.txt")            
         print("2-be2.txt")            
         print("3-be3.txt")
-        print("4-KILÉPÉS")
+        print("4-be4.txt")
+        print("5-KILÉPÉS")
         menu_jel("s")
         valasztas = input("Választás: ")
         menu_jel("s")
         if valasztas == "1":
-            teszt_1()       
+            teszt_1("be1.txt")       
         elif valasztas == "2":
-            teszt_2()       
+            teszt_1("be2.txt")       
         elif valasztas == "3":
-            teszt_3()
+            teszt_1("be3.txt")
         elif valasztas == "4":
+            teszt_1("be4.txt")
+        elif valasztas == "5":
             teszt = False
         elif valasztas == "":
             print("Valamit meg is kéne adni")
         else:
             print("Adj meg lehetséges választ")       
 
-def teszt_1():
+def teszt_1(fajl):
     menu_jel("t")
-    fr = open("be1.txt", "r")
-    sor= fr.readline().strip().split()
-    while sor != [""]:
-        sor=fr.readline().strip().split()
-        
-def teszt_2():
-    menu_jel("t")
-    fr = open("be2.txt", "r")
-    sor= fr.readline().strip().split()
-    while sor != [""]:
-        sor=fr.readline().strip().split()
-        
-def teszt_3():
-    menu_jel("t")
-    fr = open("be3.txt", "r")
-    sor= fr.readline().strip().split()
-    while sor != [""]:
-        sor=fr.readline().strip().split()
+    csaladbarat = []
+    nevek = []
     
-
+    fr = open(fajl, "r")
+    sor= fr.readline().strip().split()
+    while sor != []:
+        csaladbarat.append(int(sor[3]))
+        nevek.append(sor[0])
+        sor=fr.readline().strip().split()
+        
+    print("Kimenet: ")
+    kiir(osszes_csaladbarat(nevek, csaladbarat))
+    
 def lm(nevek, hosszak, ertekelesek, csaladbaratok):
     menu_jel("lm")
         
