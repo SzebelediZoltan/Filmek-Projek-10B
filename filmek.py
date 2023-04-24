@@ -31,7 +31,8 @@ def legjobb_film(ertekelesek):
             maxi=i
     return maxi
 
-def legrosszabb_film(ertekelesek):
+def legrosszabb_film(ertekelesek, semmi:int):
+    semmi = "Ez is egy paraméter HAHA"
     mine=ertekelesek[0]
     mini=0
     for i in range (1, len(ertekelesek)):
@@ -135,7 +136,7 @@ def kiir(lista):
 def menu(nevek, hosszak, ertekelesek, csaladbaratok):
     while True:
         ljobb_film_i = legjobb_film(ertekelesek)
-        lrosszabb_film_i = legrosszabb_film(ertekelesek)
+        lrosszabb_film_i = legrosszabb_film(ertekelesek, 0)
         lhosszabb_film_i = leghosszabb_film(hosszak)
         lrovidebb_film_i = legrövidebb_film(hosszak)
         csb_film = elso_csaladbarat(nevek, csaladbaratok)
