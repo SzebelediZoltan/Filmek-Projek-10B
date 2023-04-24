@@ -1,3 +1,4 @@
+
 from random import randint
 
 def beolvas(nevek, hosszak, ertekelesek, csaladbaratok):
