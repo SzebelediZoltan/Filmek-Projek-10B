@@ -9,7 +9,7 @@ def beolvasas(nevek):
     fr.close()
     
 def generalas(nevek):
-    fw = open("lista.txt", "w")
+    fw = open("filmek.txt", "w")
     for i in range(len(nevek)):
         nev = nevek[i]
         hossz = randint(90, 210)
